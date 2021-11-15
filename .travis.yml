@@ -1,0 +1,12 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t nabeelhamadal/docker-react -f ./workflow/production/Dockerfile.dev ./workflow/production/
+
+script:
+  # - docker run nabeelhamadal/docker-react npm run test
+ - docker run -e CI=true nabeelhamadal/docker-react npm run test
