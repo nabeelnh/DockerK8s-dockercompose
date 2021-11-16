@@ -1,9 +1,6 @@
 version: '3'
 services:
   web:
-    stdin_open: true
-    environment:
-      - CHOKIDAR_USEPOLLING=true
     build:
       context: ./
       dockerfile: Dockerfile.dev
@@ -13,7 +10,6 @@ services:
       - /usr/app/node_modules
       - ./:/usr/app
   tests:
-    stdin_open: true
     build:
       context: ./
       dockerfile: Dockerfile.dev
