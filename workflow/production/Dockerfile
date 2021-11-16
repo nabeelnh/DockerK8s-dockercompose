@@ -26,5 +26,8 @@ RUN npm run build
 # This is the final/main image we will be using
 FROM nginx
 
+# Port to expose on EC2
+EXPOSE 80
+
 # We only need the build directory from the React node above
 COPY --from=build /usr/app/build /usr/share/nginx/html
