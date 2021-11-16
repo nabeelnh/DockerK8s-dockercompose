@@ -5,7 +5,7 @@
 FROM node:16-alpine AS build
 
 # Set working directory
-WORKDIR /usr/app
+WORKDIR '/usr/app'
 
 # Dependencies
 COPY ./package.json ./
