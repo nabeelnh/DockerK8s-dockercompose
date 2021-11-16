@@ -8,5 +8,16 @@ before_install:
   - docker build -t nabeelhamadal/docker-react -f ./workflow/production/Dockerfile.dev ./workflow/production/
 
 script:
-  # - docker run nabeelhamadal/docker-react npm run test
- - docker run -e CI=true nabeelhamadal/docker-react npm run test
+  - docker run -e CI=true nabeelhamadal/docker-react npm run test    # -e CI=true to run then stop docker server (docker daemon)
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-500139711733"
+  bucket_path: "docker-react"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
